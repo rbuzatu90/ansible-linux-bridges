@@ -1,3 +1,31 @@
-- include: bridges.yml
+
+
+- include: br-mgmt.yml
   vars:
-    br_name: br-mgmt
+    br_mgmt_name: "{{ hostvars[inventory_hostname]['container_networks']['container_address']['bridge'] }}"
+    br_mgmt_if: eth1
+    br_mgmt_address: "{{ hostvars[inventory_hostname]['container_networks']['container_address']['address'] }}"
+    br_mgmt_netmask: "{{ hostvars[inventory_hostname]['container_networks']['container_address']['netmask'] }}"
+    br_vlan_name: "{{ hostvars[inventory_hostname]['container_networks']['eth12_address']['bridge'] }}"
+    br_vlan_if: eth1
+    br_vxlan_name: "{{ hostvars[inventory_hostname]['container_networks']['tunnel_address']['bridge'] }}"
+    br_vxlan_if: eth2
+  when: ansible_hostname == "compute1" or ansible_hostname == "infra1" or ansible_hostname == "net1"
+    
+#- include: br-vlan.yml
+#  vars:
+#    br_mgmt_name: "{{ hostvars[inventory_hostname]['container_networks']['container_address']['bridge'] }}"
+#    br_mgmt_address: "{{ hostvars[inventory_hostname]['container_networks']['container_address']['address'] }}"
+#    br_mgmt_netmask: "{{ hostvars[inventory_hostname]['container_networks']['container_address']['netmask'] }}"
+#- inclue: br-vxlan.yml 
+
+#    mgmt_address: "{{ansible_eth1.ipv4.address}}"
+#    data_address: "{{ ansible_hostname }}"
+#    when: ansible_hostname == "net1"
+
+#- debug: msg="{{ hostvars[inventory_hostname]['container_networks']['container_address']['address'] }}"
+#- name: lol
+#  debug: msg="{{hostvars.infra1.container_address}}"
+#- name: addr
+#  debug: msg="{{ansible_eth1.ipv4.address}}"
+

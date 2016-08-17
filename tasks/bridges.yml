@@ -1,6 +1,0 @@
-- name: Remove eth1 config
-  shell: sed -ie '/iface eth1/,+6d' /etc/network/interfaces
-- name: Add br-mgmt
-  shell: /sbin/brctl addbr br-mgmt || true
-- name: Add br-mgmt config file
-  template: src=bridge.cfg.j2 dest=/etc/network/interfaces.d/{{ br_name }}.cfg

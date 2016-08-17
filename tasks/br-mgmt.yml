@@ -1,0 +1,9 @@
+
+- name: Remove eth1 config
+  shell: sed -ie '/iface eth1/,+6d' /etc/network/interfaces
+- name: Add "{{ br_mgmt_name }}"
+  shell: /sbin/brctl addbr {{ br_mgmt_name }}|| true
+- name: Add "{{ br_mgmt_name }}" config file
+  template: src={{ br_mgmt_name }}.cfg.j2 dest=/etc/network/interfaces.d/{{ br_mgmt_name }}.cfg
+#  - vars:
+#    br-name: "{{ br_mgmt_name }}"
