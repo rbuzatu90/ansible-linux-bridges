@@ -1,0 +1,3 @@
+- include: bridges.yml
+  vars:
+    br_name: br-mgmt
