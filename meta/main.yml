@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Remus Buzatu
+  description: Configure Linux bridges
+  min_ansible_version: 1.8
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+  galaxy_tags:
+  - networking
+  - system
+  - server
+  - ubuntu
+dependencies: []
